@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration status="WARN">
+    <Appenders>
+
+        <!-- Console Appender -->
+        <Console name="tsCLI" target="SYSTEM_OUT">
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout>
+                <Pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} => %msg%n
+                    <!--                    [%-5level] [%t] %d{yyyy-MM-dd HH:mm:ss.SSS} => %msg%n-->
+                </Pattern>
+            </PatternLayout>
+        </Console>
+
+        <!-- File Appender -->
+        <Routing name="tsFile">
+            <Routes>
+                <Pattern>
+                    "$${ctx:logFileName}"
+                </Pattern>
+                <Route>
+                    <RollingFile name="Rolling-${ctx:logFileName}"
+                                 fileName="logs/automation.log"
+                                 filePattern="logs/$${date:yyyy-MM}/execution-%d{MM-dd-yyyy}-%i.log.gz"
+                                 append="true">
+                        <PatternLayout>
+                            <Pattern>
+                                [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} => %msg%n
+                            </Pattern>
+                        </PatternLayout>
+                        <Policies>
+                            <SizeBasedTriggeringPolicy size="10 KB"/>
+                        </Policies>
+                    </RollingFile>
+                </Route>
+            </Routes>
+        </Routing>
+
+    </Appenders>
+
+    <!-- Root Logger -->
+    <Loggers>
+        <Root level="TRACE">
+            <AppenderRef ref="tsFile"/>
+            <AppenderRef ref="tsCLI"/>
+        </Root>
+    </Loggers>
+</Configuration>

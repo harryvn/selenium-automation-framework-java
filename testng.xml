@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Automation Suite" parallel="none" thread-count="5">
+
+    <!-- TestNG listeners for reporting and retry mechanisms -->
+    <listeners>
+        <listener class-name="com.example.listeners.ExtentTestListener"/>
+    </listeners>
+
+        <!--Test configuration for the "Home Page Test" -->
+        <test name="Home Page">
+            <classes>
+                <class name="com.example.testcases.HomePageTest"/>
+            </classes>
+        </test> <!-- Test -->
+
+    <!-- Test configuration for the "Login Page Test" -->
+    <test name="Login Page">
+        <classes>
+            <class name="com.example.testcases.LoginPageTest"/>
+        </classes>
+    </test> <!-- Test -->
+
+</suite> <!-- Suite -->
