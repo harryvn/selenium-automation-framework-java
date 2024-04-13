@@ -1,16 +1,10 @@
-<div style="text-align: center;">
 
-# Selenium WebDriver Automation Framework in Java
 
-### A Selenium-based modular automation framework in Java for web application testing.
+<h1 align="center"> Selenium WebDriver Automation Framework in Java </h1>
 
-![License: GPL v3](https://img.shields.io/badge/License-GPL_v3-blue.svg)
+<h3 align="center"> A Selenium-based modular automation framework in Java for web application testing. </h3>
 
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/your-repo.svg)](https://github.com/harryvn/selenium-automation-framework-java/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/yourusername/your-repo.svg)](https://github.com/harryvn/selenium-automation-framework-java/network)
-[![GitHub issues](https://img.shields.io/github/issues/yourusername/your-repo.svg)](https://github.com/harryvn/selenium-automation-framework-java/issues)
-
-</div>
+<p align="center"> <img src="https://img.shields.io/badge/License-GPL_v3-blue.svg"/> </p>
 
 ---
 
