@@ -1,5 +1,3 @@
-
-
 <h1 align="center"> Selenium WebDriver Automation Framework in Java </h1>
 
 <h3 align="center"> A Selenium-based modular automation framework in Java for web application testing. </h3>
@@ -32,8 +30,10 @@
    - [Parameters](#parameters)
    - [Example Use Cases](#example-use-cases)
 10. [Convenient Script](#convenient-script)
-11. [License](#license)
-12. [References](#references) 
+11. [Packaging](#packaging)
+12. [Dockerfile](#dockerfile)
+13. [License](#license)
+14. [References](#references)
 
 ---
 
@@ -48,7 +48,7 @@ applications.
 ## Key Features
 
 | Feature                    | Description                                                                                                   |
-|----------------------------|---------------------------------------------------------------------------------------------------------------|
+| -------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | `Modular Design`           | The framework follows a modular architecture, promoting separation of concerns and improving maintainability. |
 | `Page Object Model (POM)`  | It utilises the Page Object Model pattern for better code organisation and reusability.                       |
 | `TestNG Integration`       | TestNG is integrated for robust test management, parallel execution, and reporting capabilities.              |
@@ -65,72 +65,72 @@ applications.
 The project structure is well-organised, with clear separation of functionalities. The provided image offers a visual
 representation of the structure.
 
-   ```bash
-   .
-   ├── logs
-   │   └── automation.log
-   ├── pom.xml
-   ├── reports
-   │   └── AutomationReport.html
-   ├── runTests.sh
-   ├── src
-   │   ├── main
-   │   │   ├── java
-   │   │   │   └── com
-   │   │   │       └── example
-   │   │   │           ├── assertions
-   │   │   │           │   └── SoftAssertionManager.java
-   │   │   │           ├── browserCapabilities
-   │   │   │           │   ├── ChromeCapabilities.java
-   │   │   │           │   ├── EdgeCapabilities.java
-   │   │   │           │   └── FirefoxCapabilities.java
-   │   │   │           ├── browserManager
-   │   │   │           │   ├── BrowserManager.java
-   │   │   │           │   ├── LocalBrowserManager.java
-   │   │   │           │   └── RemoteBrowserManager.java
-   │   │   │           ├── configManager
-   │   │   │           │   ├── ConfigFactory.java
-   │   │   │           │   └── FMConfig.java
-   │   │   │           ├── driverManager
-   │   │   │           │   ├── DriverManager.java
-   │   │   │           │   ├── LocalChromeDriverManager.java
-   │   │   │           │   ├── LocalEdgeDriverManager.java
-   │   │   │           │   ├── LocalFirefoxDriverManager.java
-   │   │   │           │   ├── RemoteChromeDriverManager.java
-   │   │   │           │   ├── RemoteEdgeDriverManager.java
-   │   │   │           │   └── RemoteFirefoxDriverManager.java
-   │   │   │           ├── enums
-   │   │   │           │   ├── BrowserType.java
-   │   │   │           │   ├── EnvironmentType.java
-   │   │   │           │   └── LocatorType.java
-   │   │   │           ├── listeners
-   │   │   │           │   └── ExtentTestListener.java
-   │   │   │           ├── logManager
-   │   │   │           │   └── LoggerManager.java
-   │   │   │           ├── pagefactory
-   │   │   │           │   ├── HomePage.java
-   │   │   │           │   └── LoginPage.java
-   │   │   │           ├── reportManager
-   │   │   │           │   └── ExtentReportManager.java
-   │   │   │           ├── testbuilder
-   │   │   │           │   └── TestBuilder.java
-   │   │   │           └── utilities
-   │   │   │               ├── CommonUtil.java
-   │   │   │               ├── ExtentReportNGUtil.java
-   │   │   │               └── StarterKit.java
-   │   │   └── resources
-   │   │       ├── local.properties
-   │   │       ├── log4j2.xml
-   │   │       └── remote.properties
-   │   └── test
-   │       └── java
-   │           └── com
-   │               └── example
-   │                   └── testcases
-   │                       ├── HomePageTest.java
-   │                       └── LoginPageTest.java
-   └── testng.xml
-   ```
+```bash
+.
+├── logs
+│   └── automation.log
+├── pom.xml
+├── reports
+│   └── AutomationReport.html
+├── runTests.sh
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── example
+│   │   │           ├── assertions
+│   │   │           │   └── SoftAssertionManager.java
+│   │   │           ├── browserCapabilities
+│   │   │           │   ├── ChromeCapabilities.java
+│   │   │           │   ├── EdgeCapabilities.java
+│   │   │           │   └── FirefoxCapabilities.java
+│   │   │           ├── browserManager
+│   │   │           │   ├── BrowserManager.java
+│   │   │           │   ├── LocalBrowserManager.java
+│   │   │           │   └── RemoteBrowserManager.java
+│   │   │           ├── configManager
+│   │   │           │   ├── ConfigFactory.java
+│   │   │           │   └── FMConfig.java
+│   │   │           ├── driverManager
+│   │   │           │   ├── DriverManager.java
+│   │   │           │   ├── LocalChromeDriverManager.java
+│   │   │           │   ├── LocalEdgeDriverManager.java
+│   │   │           │   ├── LocalFirefoxDriverManager.java
+│   │   │           │   ├── RemoteChromeDriverManager.java
+│   │   │           │   ├── RemoteEdgeDriverManager.java
+│   │   │           │   └── RemoteFirefoxDriverManager.java
+│   │   │           ├── enums
+│   │   │           │   ├── BrowserType.java
+│   │   │           │   ├── EnvironmentType.java
+│   │   │           │   └── LocatorType.java
+│   │   │           ├── listeners
+│   │   │           │   └── ExtentTestListener.java
+│   │   │           ├── logManager
+│   │   │           │   └── LoggerManager.java
+│   │   │           ├── pagefactory
+│   │   │           │   ├── HomePage.java
+│   │   │           │   └── LoginPage.java
+│   │   │           ├── reportManager
+│   │   │           │   └── ExtentReportManager.java
+│   │   │           ├── testbuilder
+│   │   │           │   └── TestBuilder.java
+│   │   │           └── utilities
+│   │   │               ├── CommonUtil.java
+│   │   │               ├── ExtentReportNGUtil.java
+│   │   │               └── StarterKit.java
+│   │   └── resources
+│   │       ├── local.properties
+│   │       ├── log4j2.xml
+│   │       └── remote.properties
+│   └── test
+│       └── java
+│           └── com
+│               └── example
+│                   └── testcases
+│                       ├── HomePageTest.java
+│                       └── LoginPageTest.java
+└── testng.xml
+```
 
 ---
 
@@ -143,7 +143,7 @@ assertion management, browser capabilities, WebDriver management, configuration 
 utilities for interaction with WebDriver and ExtentReports.
 
 | Package                           | Class                                                                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-|-----------------------------------|-----------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `com.example.assertions`          | `SoftAssertionManager`                                                | Utility class for managing soft assertions in TestNG tests.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | `com.example.browserCapabilities` | `ChromeCapabilities`<br/>`EdgeCapabilities`<br/>`FirefoxCapabilities` | Provides browser capabilities for remote execution.                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | `com.example.browserManager`      | `BrowserManager`<br/>`LocalBrowserManager`<br/>`RemoteBrowserManager` | Manages the creation of WebDriver instances based on the specified environment and browser type.                                                                                                                                                                                                                                                                                                                                                                                                 |
@@ -199,6 +199,7 @@ The framework relies on the following dependencies:
 Setting up `selenium-automation-framework-java` is straightforward:
 
 1. **Clone the Repository**: Clone the repository to your local machine using the provided Git clone command:
+
    ```bash
    git clone https://github.com/harryvn/selenium-automation-framework-java.git
    ```
@@ -216,23 +217,23 @@ The below section explains how to configure various test parameters through a co
 details on the parameters, their descriptions, and example use cases demonstrating how to run tests with different
 configurations.
 
-   ```bash
-   ### SAMPLE ###
-   # Configuration file for setting up test parameters
-   browser=CHROME
-   url=https://the-internet.herokuapp.com
-   headless=false
-   recordVideo=false
-   remoteSeleniumGridUrl=http://localhost:4444
-   env=REMOTE
-   username=tomsmith
-   password=SuperSecretPassword!
-   ```
+```bash
+### SAMPLE ###
+# Configuration file for setting up test parameters
+browser=CHROME
+url=https://the-internet.herokuapp.com
+headless=false
+recordVideo=false
+remoteSeleniumGridUrl=http://localhost:4444
+env=REMOTE
+username=tomsmith
+password=SuperSecretPassword!
+```
 
 ## Parameters
 
 | Parameter               | Description                                                                                                 |
-|-------------------------|-------------------------------------------------------------------------------------------------------------|
+| ----------------------- | ----------------------------------------------------------------------------------------------------------- |
 | `browser`               | Specifies the web browser to use for testing (e.g., `CHROME`, `EDGE`, `FIREFOX`).                           |
 | `url`                   | Defines the `URL` of the application under test, enabling seamless navigation to specific web pages.        |
 | `headless`              | Determines whether to run the browser in headless mode, useful for executing tests without GUI interaction. |
@@ -248,60 +249,60 @@ configurations.
 ## Example Use Cases
 
 1. **Executing Tests without Any Additional Parameters:**
-      ```
-      mvn clean test
-      ```
-    - Tests will run with default configuration as no additional parameters are specified.
+   ```
+   mvn clean test
+   ```
+   - Tests will run with default configuration as no additional parameters are specified.
 
 ---
 
 2. **Local Testing with Chrome Browser:**
-      ```
-      mvn clean test -Denv=LOCAL -Dbrowser=CHROME
-      ```
-    - Tests will run locally with Chrome browser and default value will be used for other parameters.
+   ```
+   mvn clean test -Denv=LOCAL -Dbrowser=CHROME
+   ```
+   - Tests will run locally with Chrome browser and default value will be used for other parameters.
 
 ---
 
 3. **Remote Testing with Chrome Browser and Video Recording:**
-      ```
-      mvn clean test -Denv=REMOTE -Dbrowser=CHROME -DremoteSeleniumGridUrl=<ip-address:port> -DrecordVideo=true
-      ```
-    - Tests will run on remote Selenium Grid with Chrome browser with video recording enabled.
+   ```
+   mvn clean test -Denv=REMOTE -Dbrowser=CHROME -DremoteSeleniumGridUrl=<ip-address:port> -DrecordVideo=true
+   ```
+   - Tests will run on remote Selenium Grid with Chrome browser with video recording enabled.
 
 ---
 
 4. **Remote Testing with Chrome Browser in Headless Mode:**
-      ```
-      mvn clean test -Denv=REMOTE -Dbrowser=CHROME -DremoteSeleniumGridUrl=<ip-address:port> -Dheadless=true
-      ```
-    - Tests will run on remote Selenium Grid with Chrome browser in headless mode.
+   ```
+   mvn clean test -Denv=REMOTE -Dbrowser=CHROME -DremoteSeleniumGridUrl=<ip-address:port> -Dheadless=true
+   ```
+   - Tests will run on remote Selenium Grid with Chrome browser in headless mode.
 
 ---
 
 5. **Authentication Testing with Username and Password:**
-      ```
-      mvn clean test -Denv=REMOTE -Dusername=myusername -Dpassword=mypassword
-      ```
-    - Tests will run on remote Selenium Grid with provided username and password for authentication.
+   ```
+   mvn clean test -Denv=REMOTE -Dusername=myusername -Dpassword=mypassword
+   ```
+   - Tests will run on remote Selenium Grid with provided username and password for authentication.
 
 ---
 
 6. **Running Tests in Parallel:**
-      ```
-      mvn clean test -Dparallel=tests
-      ```
-    - Tests will run in parallel reducing overall execution time.
+   ```
+   mvn clean test -Dparallel=tests
+   ```
+   - Tests will run in parallel reducing overall execution time.
 
 ---
 
 7. **Specifying Application URL for Testing:**
-      ```
-      mvn clean test -Durl=<url-of-site-under-test>
-      ```
-    - Tests will run using the specified URL of the application under test, enabling testing across various
-      environments (e.g., staging, production) and seamless integration with continuous integration (CI) pipelines
-      through dynamic URL specification.
+   ```
+   mvn clean test -Durl=<url-of-site-under-test>
+   ```
+   - Tests will run using the specified URL of the application under test, enabling testing across various
+     environments (e.g., staging, production) and seamless integration with continuous integration (CI) pipelines
+     through dynamic URL specification.
 
 ---
 
@@ -314,15 +315,16 @@ Selenium Grid configuration, video recording, parallel execution, and headless m
 ### Usage
 
 - Ensure the script has executable permissions:
-   ```bash
-   chmod +x runTests.sh
-   ```
+
+  ```bash
+  chmod +x runTests.sh
+  ```
 
 - Users can simply run the `runTests.sh` script and follow the prompts to configure and execute test scenarios
   effortlessly.
-   ```bash
-   ./runTests.sh
-   ```
+  ```bash
+  ./runTests.sh
+  ```
 
 `Note: The script prompts the user to select various options and constructs the appropriate Maven command to execute the Selenium tests.`
 
@@ -333,6 +335,102 @@ Below is an example usage of the script:
 ![runTests](https://github.com/harryvn/selenium-automation-framework-java/assets/4848094/62a80c39-335a-4b63-abfe-7b1b678213d5)
 
 `Note: For detailed explanations of each option and additional information, refer to the comments within the script itself.`
+
+---
+
+## Packaging
+
+Packaging the automation framework is an essential step to ensure that it can be easily shared and reused across different projects. Here are the steps to package the Selenium automation framework:
+
+**Create a JAR File**: Use `Maven` to package the framework into a `JAR` file. This can be done by running the following command:
+
+```bash
+mvn clean package -DskipTests
+```
+
+The above command will `clean` the project, `package` it into a `JAR` file, and `skip` the test execution phase to speed up the build process.
+
+By following these steps, you can package the Selenium automation framework and reuse it across multiple projects.
+
+---
+
+## Dockerfile
+
+The Dockerfile outlined below uses multi-stage builds with Maven and OpenJDK to ensure an optimised and secure environment for running Selenium TestNG test suites.
+
+```Dockerfile
+# Use the Maven image to compile the project
+FROM maven:3.8.1-openjdk-17-slim AS builder
+
+# Add metadata labels
+LABEL maintainer="<Your Name & Email>" \
+      version="<version number>" \
+      description="<Short Description>"
+
+# Set the working directory
+WORKDIR /automation
+
+# Optimize layer caching by copying only pom.xml first
+COPY pom.xml .
+
+# Use specific maven goals and options for better performance
+RUN mvn dependency:go-offline -B --no-transfer-progress
+
+# Copy necessary project files
+COPY src ./src
+COPY test-suites ./test-suites
+COPY testng.xml ./testng.xml
+
+# Package the application
+RUN mvn clean package -DskipTests -B --no-transfer-progress && rm -rf ~/.m2/repository
+
+# Use an openjdk image from bellsoft
+FROM bellsoft/liberica-openjdk-alpine:17.0.7-7
+
+# Add metadata labels
+LABEL maintainer="<Your Name & Email>" \
+      version="<version number>" \
+      description="<Short Description>"
+
+# Create non-root user for security
+RUN addgroup -S automation && adduser -S automation -G automation
+
+# Set the working directory
+WORKDIR /automation
+
+# Create logs and test-output directories and set permissions
+RUN mkdir -p /automation/logs /automation/test-output && chown -R automation:automation /automation/logs /automation/test-output
+
+# Copy only required files from builder stage
+COPY --from=builder --chown=automation:automation /automation/target/tafs/libs/ ./libs/
+COPY --from=builder --chown=automation:automation /automation/test-suites/ ./test-suites/
+COPY --from=builder --chown=automation:automation /automation/testng.xml ./testng.xml
+
+# Define environment variables with defaults
+ENV ENVIRONMENT=REMOTE \
+    BROWSER=CHROME \
+    GRID_URL=http://<selenium-grid-host-or-ip>:<port> \
+    RECORD_VIDEO=false \
+    HEADLESS=false \
+    TEST_SUITE=Master.xml
+
+# Set the entry point
+ENTRYPOINT ["sh", "-c", "java -cp 'libs/*' -Denv=${ENVIRONMENT} -Dbrowser=${BROWSER} -DremoteSeleniumGridUrl=${GRID_URL} -DrecordVideo=${RECORD_VIDEO} -Dheadless=${HEADLESS} org.testng.TestNG test-suites/${TEST_SUITE}"]
+```
+
+## Usage Instructions
+
+### Building the Image
+
+```bash
+docker build -t ${name-your-image:tag} .
+```
+
+### Running the image
+
+```bash
+docker run -d --rm --name ${CONTAINER_NAME} -e ENVIRONMENT=${ENVIRONMENT} -e BROWSER=${BROWSER} -e GRID_URL=${http://<selenium-grid-host-or-ip>:<port>} -e RECORD_VIDEO=${BOOLEAN} -e HEADLESS=${BOOLEAN} -e TEST_SUITE=${SUITE_NAME}.xml ${your-image-name:tag}
+```
 
 ---
 
@@ -354,5 +452,9 @@ the [LICENSE](https://github.com/harryvn/selenium-automation-framework-java/blob
 [Maven](https://maven.apache.org/guides/index.html)
 
 [Log4J](https://logging.apache.org/log4j/2.x/)
+
+[Docker](https://www.docker.com/)
+
+[OpenJDK](https://openjdk.org/)
 
 [The Internet Heroku App](https://the-internet.herokuapp.com/)
